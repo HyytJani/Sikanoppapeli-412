@@ -1,4 +1,5 @@
 let yhteensa=0
+let pelaaja1=0
 
 
 var face0=new Image()
@@ -24,32 +25,46 @@ function heita(){
     
     document.querySelector('#pisteet').innerHTML='';
     
-    let pisteet=document.createElement('p');
+    //let pisteet=document.createElement('p');
     let uusipisteet=document.createTextNode(yhteensa);
     pisteet.appendChild(uusipisteet);
-    pisteet.className=('nimilista'); 
+    //pisteet.className=('nimilista'); 
     document.querySelector('#pisteet').appendChild(pisteet);    
 }
 
 let lomake=document.forms['syota'];
 lomake.addEventListener('submit',tulostaPelaajat)
 const pelaajat = new Array  ();
+const pelaajapisteet = new Array();
 
 
 function tulostaPelaajat(event){
     event.preventDefault()
-     nimi=document.querySelector('#syota input[type="text"]').value;
-    
-    
+     nimi=document.querySelector('#syota input[type="text"]').value;   
     pelaajat.push(nimi);
     document.getElementById('syota').reset();
-
     if(pelaajat.length<=10){ 
         document.querySelector('#pelaajat').innerHTML='';
         for(let i=0;i<pelaajat.length;i++) {
         let uusinimi=document.createElement('li');
-        let uusinimiteksti=document.createTextNode(pelaajat[i]);
+        let uusinimiteksti=document.createTextNode(pelaajat[i]+"  "+pelaaja1+" pistettä");
         uusinimi.appendChild(uusinimiteksti);
         uusinimi.className=('pelaajalista'); 
-        document.querySelector('#pelaajat').appendChild(uusinimi);}
-        }}
+        document.querySelector('#pelaajat').appendChild(uusinimi);}}}
+        
+    
+    function lopeta(){
+          
+        if(pelaajat.length<=10){ 
+            document.querySelector('#pelaajat').innerHTML='';
+            for(let i=0;i<pelaajat.length;i++) {
+            let uusinimi=document.createElement('li');
+            let uusinimiteksti=document.createTextNode(pelaajat[i]+"  "+pelaaja1+" pistettä");
+            uusinimi.appendChild(uusinimiteksti);
+            uusinimi.className=('pelaajalista'); 
+            document.querySelector('#pelaajat').appendChild(uusinimi);
+            
+            }
+            yhteensa=0;}
+
+    }
